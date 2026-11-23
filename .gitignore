@@ -13,3 +13,6 @@ desktop.ini
 # Never commit secrets
 .env
 .env.*
+
+# Supabase CLI local state
+supabase/.temp/
