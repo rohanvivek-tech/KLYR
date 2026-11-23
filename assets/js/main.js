@@ -218,13 +218,19 @@
       } else if (isLocal) {
         console.info("[KLYR] Local preview — waitlist submission not sent:", Object.fromEntries(data));
         req = new Promise(function (r) { setTimeout(r, 600); });
-      } else {
+      } else if (/\.netlify\.app$/.test(host)) {
+        // Netlify Forms (only works when hosted on Netlify)
         req = fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(data).toString() })
           .then(function (res) { if (!res.ok) throw new Error("server"); });
+      } else {
+        // Hosted somewhere with no waitlist service connected yet (e.g. GitHub Pages before Supabase is set up)
+        req = Promise.reject(new Error("not-connected"));
       }
       req.then(done).catch(function (err) {
         console.error("[KLYR] waitlist", err);
-        fail(/network|fetch/i.test((err && err.message) || "") ? friendly(err) : null);
+        var m = (err && err.message) || "";
+        if (m === "not-connected") return fail("Sign-ups open very soon. Please check back shortly.");
+        fail(/network|fetch/i.test(m) ? friendly(err) : null);
       });
     });
   }
