@@ -16,7 +16,7 @@
 // =========================================================
 import nodemailer from "npm:nodemailer@6.9.16";
 
-const GMAIL_USER = Deno.env.get("GMAIL_USER") ?? "";
+const GMAIL_USER = (Deno.env.get("GMAIL_USER") ?? "").trim().replace(/^["']|["']$/g, "");
 const GMAIL_APP_PASSWORD = (Deno.env.get("GMAIL_APP_PASSWORD") ?? "").replace(/\s+/g, "");
 const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") || GMAIL_USER;
 const WEBHOOK_SECRET = Deno.env.get("WEBHOOK_SECRET") ?? "";
@@ -122,5 +122,18 @@ Deno.serve(async (req: Request): Promise<Response> => {
   failed.forEach((f) => console.error("Send failed:", f.reason?.message ?? f.reason));
   console.log(`contact #${record.id}: owner=${results[0].status} reply=${results[1].status}`);
 
-  return new Response(failed.length ? "Partly failed" : "Sent", { status: failed.length ? 502 : 200 });
+  // The trigger stores this reply in net._http_response (visible only to the database owner),
+  // so the reason for any failure can be checked without opening the dashboard logs.
+  const summary: Record<string, string> = {
+    owner: results[0].status === "fulfilled" ? "sent" : `failed: ${String((results[0] as PromiseRejectedResult).reason?.message ?? "").slice(0, 300)}`,
+    reply: results[1].status === "fulfilled" ? "sent" : `failed: ${String((results[1] as PromiseRejectedResult).reason?.message ?? "").slice(0, 300)}`,
+  };
+  if (failed.length) {
+    // Safe hints only — never the values themselves.
+    summary.hint = `sender domain=${GMAIL_USER.split("@")[1] ?? "(no @)"}, app password length=${GMAIL_APP_PASSWORD.length}, letters only=${/^[a-z]+$/i.test(GMAIL_APP_PASSWORD)}`;
+  }
+  return new Response(JSON.stringify(summary), {
+    status: failed.length ? 502 : 200,
+    headers: { "Content-Type": "application/json" },
+  });
 });
