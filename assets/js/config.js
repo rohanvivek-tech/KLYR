@@ -6,13 +6,13 @@
 window.KLYR_CONFIG = {
   // Supabase → Project Settings → API → Project URL
   // e.g. "https://abcdefghijkl.supabase.co"
-  supabaseUrl: "",
+  supabaseUrl: "https://fhejghohljontqpidrrh.supabase.co",
 
   // Supabase → Project Settings → API → Project API keys → "anon public"
   // This key is designed to be public. Your data is protected by the
   // Row Level Security rules in supabase/schema.sql.
   // NEVER paste the "service_role" key here.
-  supabaseAnonKey: "",
+  supabaseAnonKey: "sb_publishable_4ORFv63XqnVLZyUwoQunOw_Aq3CSqVp",
 
   // Optional: send waitlist sign-ups to Formspree (or similar) instead of Supabase.
   waitlistEndpoint: ""

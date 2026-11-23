@@ -29,6 +29,12 @@ create policy "Anyone can join the waitlist"
   to anon, authenticated
   with check (true);
 
+-- Let the website's public key add rows (and nothing else), then
+-- tell the Data API to pick up the new table straight away.
+grant usage on schema public to anon, authenticated;
+grant insert on public.waitlist to anon, authenticated;
+notify pgrst, 'reload schema';
+
 -- Accounts --------------------------------------------------
 -- Login, sign-up and password reset use Supabase Auth, which stores
 -- users in its own secure auth.users table. Nothing to create here.

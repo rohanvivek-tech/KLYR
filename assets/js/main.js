@@ -213,6 +213,7 @@
           });
         }).then(function (r) {
           // 23505 = this email is already on the list — treat as success.
+          if (r.error && /^PGRST20[25]$/.test(r.error.code)) throw new Error("not-connected"); // table not set up yet
           if (r.error && r.error.code !== "23505") throw r.error;
         });
       } else if (isLocal) {
