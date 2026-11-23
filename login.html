@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in — KLYR</title>
+  <meta name="description" content="Log in or create your KLYR account.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KLYR">
+  <meta property="og:title" content="Log in — KLYR">
+  <meta property="og:description" content="Log in or create your KLYR account.">
+  <meta property="og:image" content="assets/img/klyr-can-mixed-berry.webp">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body data-page="login">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="KLYR home">KLYR<i aria-hidden="true"></i></a>
+      <a class="header-login" href="login.html" aria-current="page"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Log in</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span></button>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <ul class="nav__links">
+          <li><a href="product.html">The Drink</a></li>
+          <li><a href="why.html">Why KLYR</a></li>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav__actions">
+          <a class="nav__login" href="login.html" aria-current="page"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Log in</a>
+          <a class="btn" href="waitlist.html"><span>Join the waitlist</span></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+<section class="auth">
+      <div class="auth__visual">
+        <img src="assets/img/klyr-can-mixed-berry.webp" width="1199" height="1312" alt="" >
+        <div class="auth__visual-copy">
+          <p class="kicker">Members</p>
+          <h2 class="h1 mt-s">Welcome to the <span class="hl">crew.</span></h2>
+        </div>
+      </div>
+
+      <div class="auth__main">
+        <div class="auth__box load" style="--d:.1s">
+          <div class="tabs" role="tablist" aria-label="Account">
+            <button class="tab" role="tab" id="tab-login" aria-selected="true" aria-controls="panel-login" type="button">Log in</button>
+            <button class="tab" role="tab" id="tab-signup" aria-selected="false" aria-controls="panel-signup" tabindex="-1" type="button">Sign up</button>
+          </div>
+
+          <div role="tabpanel" id="panel-login" aria-labelledby="tab-login">
+            <form class="form" data-login novalidate>
+              <div class="field">
+                <label for="li-email">Email address</label>
+                <input id="li-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="err-li-email">
+                <p class="field__error" id="err-li-email" data-error-for="email" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="li-password">Password</label>
+              <div class="field__wrap">
+                <input id="li-password" name="password" type="password" autocomplete="current-password" required aria-describedby="err-li-password" style="padding-right:80px">
+                <button class="field__toggle" type="button" data-toggle-password aria-controls="li-password" aria-pressed="false">Show</button>
+              </div>
+                <p class="field__error" id="err-li-password" data-error-for="password" role="alert"></p>
+              </div>
+              <div class="auth__row">
+                <label class="check"><input type="checkbox" name="remember"> <span>Keep me logged in</span></label>
+                <button class="text-btn" type="button" data-forgot>Forgot password?</button>
+              </div>
+              <button class="btn btn--block" type="submit"><span>Log in</span></button>
+              <p class="form__status" role="status" aria-live="polite"></p>
+            </form>
+            <p class="auth__alt">New to KLYR? <a class="text-link" href="#signup" data-switch-tab="tab-signup">Create an account</a></p>
+          </div>
+
+          <div role="tabpanel" id="panel-signup" aria-labelledby="tab-signup" hidden>
+            <form class="form" data-signup novalidate>
+              <div class="field">
+                <label for="su-name">Name</label>
+                <input id="su-name" name="name" type="text" autocomplete="name" placeholder="Your name" required aria-describedby="err-su-name">
+                <p class="field__error" id="err-su-name" data-error-for="name" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="su-email">Email address</label>
+                <input id="su-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="err-su-email">
+                <p class="field__error" id="err-su-email" data-error-for="email" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="su-password">Password</label>
+              <div class="field__wrap">
+                <input id="su-password" name="password" type="password" autocomplete="new-password" required aria-describedby="err-su-password hint-su-password" style="padding-right:80px">
+                <button class="field__toggle" type="button" data-toggle-password aria-controls="su-password" aria-pressed="false">Show</button>
+              </div>
+                <p class="fine" id="hint-su-password">At least 8 characters, with a letter and a number.</p>
+                <p class="field__error" id="err-su-password" data-error-for="password" role="alert"></p>
+              </div>
+              <div class="field">
+                <label class="check"><input type="checkbox" name="terms" required aria-describedby="err-su-terms"> <span>I agree to the <a href="terms.html">Terms of Use</a> and <a href="privacy.html">Privacy Policy</a>.</span></label>
+                <p class="field__error" id="err-su-terms" data-error-for="terms" role="alert"></p>
+              </div>
+              <button class="btn btn--block" type="submit"><span>Create account</span></button>
+              <p class="form__status" role="status" aria-live="polite"></p>
+            </form>
+            <p class="auth__alt">Already have an account? <a class="text-link" href="login.html" data-switch-tab="tab-login">Log in</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand"><a class="logo" href="index.html">KLYR<i aria-hidden="true"></i></a><p>Protein, <em>minus</em> the shake.</p></div>
+        <div class="footer__col"><h2>Explore</h2><ul><li><a href="product.html">The Drink</a></li><li><a href="why.html">Why KLYR</a></li><li><a href="story.html">Our Story</a></li></ul></div>
+        <div class="footer__col"><h2>Connect</h2><ul><li><a href="waitlist.html">Join the waitlist</a></li><li><a href="login.html">Log in</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer__col"><h2>Legal</h2><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul></div>
+      </div>
+      <div class="footer__giant" aria-hidden="true">KLYR</div>
+      <div class="footer__bottom">
+        <p>KLYR is a pre-launch product in development in Bengaluru, India, and is not yet available for purchase. All product details, flavours, nutrition values and images are proposed and may change after formulation and testing.</p>
+        <span>© <span data-year>2026</span> KLYR</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.log
+
+# Local Claude settings (keep the preview server and launch config)
+.claude/*
+!.claude/serve.js
+!.claude/launch.json
+
+# Never commit secrets
+.env
+.env.*
