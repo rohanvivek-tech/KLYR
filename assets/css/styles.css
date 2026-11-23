@@ -504,3 +504,13 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* ---------- Utilities ---------- */
 .mt-s { margin-top: 16px; } .mt-m { margin-top: 32px; } .mt-l { margin-top: 64px; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Textarea (contact form) ---------- */
+.field textarea {
+  width: 100%; min-height: 132px; padding: 14px 16px; resize: vertical;
+  background: var(--white); border: 1px solid var(--line-2); border-radius: var(--radius-s);
+  color: var(--ink); font-size: 16px; line-height: 1.5; transition: border-color .2s, box-shadow .2s;
+}
+.field textarea::placeholder { color: var(--soft); }
+.field textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(14, 16, 18, .06); }
+.field textarea[aria-invalid="true"] { border-color: var(--error); }

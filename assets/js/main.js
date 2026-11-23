@@ -236,6 +236,58 @@
     });
   }
 
+  /* ---------- Ask us anything (contact form) ----------
+     Saves a row in `contact_messages`; a database trigger then emails
+     the owner and sends the visitor an automatic reply. */
+  var ct = document.querySelector("[data-contact]");
+  if (ct) {
+    var ctWrap = ct.closest("[data-contact-wrap]");
+    var ctStatus = ct.querySelector(".form__status");
+    var ctBtn = ct.querySelector("button[type=submit]");
+
+    ct.addEventListener("submit", function (e) {
+      e.preventDefault();
+      say(ctStatus, "");
+      var el = ct.elements, ok = true;
+      if (!el.name.value.trim()) { setError(ct, el.name, "Please tell us your name."); ok = false; } else setError(ct, el.name);
+      if (!EMAIL_RE.test(el.email.value.trim())) { setError(ct, el.email, "Please enter a valid email address."); ok = false; } else setError(ct, el.email);
+      if (!el.message.value.trim()) { setError(ct, el.message, "Please write your question."); ok = false; } else setError(ct, el.message);
+      if (!el.consent.checked) { setError(ct, el.consent, "Please agree so we can email you back."); ok = false; } else setError(ct, el.consent);
+      if (!ok) return focusFirstError(ct);
+      if (el.company && el.company.value) return; // spam trap
+
+      if (!HAS_SUPABASE) return say(ctStatus, "Questions open very soon. Please check back shortly.");
+      setBusy(ctBtn, true, "Sending…");
+      getClient().then(function (c) {
+        return c.from("contact_messages").insert({
+          name: el.name.value.trim().slice(0, 120),
+          email: el.email.value.trim().toLowerCase(),
+          message: el.message.value.trim().slice(0, 2000)
+        });
+      }).then(function (r) {
+        if (r.error && /^PGRST20[25]$/.test(r.error.code)) throw new Error("not-connected");
+        if (r.error) throw r.error;
+        ctWrap.classList.add("is-submitted");
+        var s = ctWrap.querySelector(".form-success");
+        if (s) { s.setAttribute("tabindex", "-1"); s.focus(); }
+      }).catch(function (err) {
+        console.error("[KLYR] contact", err);
+        setBusy(ctBtn, false, "Send question");
+        var m = (err && err.message) || "";
+        say(ctStatus, m === "not-connected" ? "Questions open very soon. Please check back shortly."
+          : /network|fetch/i.test(m) ? friendly(err) : "Something went wrong. Please try again in a moment.");
+      });
+    });
+
+    var again = document.querySelector("[data-contact-again]");
+    if (again) again.addEventListener("click", function () {
+      ct.reset();
+      setBusy(ctBtn, false, "Send question");
+      ctWrap.classList.remove("is-submitted");
+      ct.elements.name.focus();
+    });
+  }
+
   /* ---------- Password show / hide ---------- */
   document.querySelectorAll("[data-toggle-password]").forEach(function (btn) {
     btn.addEventListener("click", function () {

@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact — KLYR Protein Water</title>
-  <meta name="description" content="Get in touch with KLYR for business and partnership enquiries, or follow our journey on Instagram.">
+  <meta name="description" content="Ask KLYR a question, or get in touch for business and partnership enquiries.">
   <meta name="theme-color" content="#ffffff">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="KLYR">
   <meta property="og:title" content="Contact — KLYR Protein Water">
-  <meta property="og:description" content="Get in touch with KLYR for business and partnership enquiries, or follow our journey on Instagram.">
+  <meta property="og:description" content="Ask KLYR a question, or get in touch for business and partnership enquiries.">
   <link rel="canonical" href="https://rohanvivek-tech.github.io/KLYR/contact.html">
   <meta property="og:url" content="https://rohanvivek-tech.github.io/KLYR/contact.html">
   <meta property="og:image" content="https://rohanvivek-tech.github.io/KLYR/assets/img/og-image.jpg">
@@ -59,7 +59,53 @@
       </div>
     </section>
 
-    <section class="section" style="padding-top:0">
+    <section class="section" id="ask" style="padding-top:0">
+      <div class="container split" style="align-items:start">
+        <div>
+          <p class="kicker reveal">Ask us anything</p>
+          <h2 class="h2 mt-s reveal" style="--d:.08s">Got a <span class="hl">question?</span></h2>
+          <p class="lead mt-s reveal" style="--d:.16s">Ask about the drink, the launch, partnerships, anything. You'll get an instant confirmation email, and we'll reply to you personally.</p>
+        </div>
+
+        <div class="panel reveal" data-contact-wrap>
+          <form class="form" data-contact novalidate>
+            <p class="hp"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label></p>
+            <div class="field">
+              <label for="ct-name">Name</label>
+              <input id="ct-name" name="name" type="text" autocomplete="name" placeholder="Your name" required maxlength="120" aria-describedby="err-ct-name">
+              <p class="field__error" id="err-ct-name" data-error-for="name" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="ct-email">Email address</label>
+              <input id="ct-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="err-ct-email">
+              <p class="field__error" id="err-ct-email" data-error-for="email" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="ct-message">Your question</label>
+              <textarea id="ct-message" name="message" rows="5" maxlength="2000" placeholder="What would you like to know?" required aria-describedby="err-ct-message"></textarea>
+              <p class="field__error" id="err-ct-message" data-error-for="message" role="alert"></p>
+            </div>
+            <div class="field">
+              <label class="check"><input type="checkbox" name="consent" value="yes" required aria-describedby="err-ct-consent"> <span>I agree to the <a href="privacy.html">Privacy Policy</a> and to KLYR emailing me about my question.</span></label>
+              <p class="field__error" id="err-ct-consent" data-error-for="consent" role="alert"></p>
+            </div>
+            <div>
+              <button class="btn btn--block" type="submit"><span>Send question</span></button>
+              <p class="form__status mt-s" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+
+          <div class="form-success" aria-live="polite">
+            <p class="kicker">Message sent</p>
+            <h2 class="h2 mt-s">Thank <span class="hl">you.</span></h2>
+            <p class="lead mt-s">Check your inbox: we've emailed you a confirmation, and we'll reply personally soon.</p>
+            <button class="link-arrow mt-m" type="button" data-contact-again style="background:none;border-top:0;border-left:0;border-right:0">Ask another question <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--coal">
       <div class="container">
         <div class="contact-grid">
           <article class="contact-card reveal">
